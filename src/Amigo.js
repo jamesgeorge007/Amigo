@@ -6,7 +6,7 @@ class Amigo extends Component {
   handleClick(){
     let inputValue = this.state.inputValue;
     console.log(inputValue);
-    this.setState({taskList : this.state.taskList.push(inputValue), index: this.state.index+=1}, () => {
+    this.setState({taskList : [...this.state.taskList, inputValue]}, () => {
       console.log(this.state);
     });
   }
@@ -16,7 +16,7 @@ class Amigo extends Component {
 }
   constructor(props){
     super(props);
-    this.state = {inputValue : '', taskList : [], index : 0};
+    this.state = {inputValue : '', taskList : []};
     this.handleClick = this.handleClick.bind(this);
     this.changeValue = this.changeValue.bind(this);
   }
