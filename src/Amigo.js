@@ -1,5 +1,24 @@
 import React, { Component } from 'react';
 import Tasks from './Tasks';
+import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+import MenuItem from '@material-ui/core/MenuItem';
+import TextField from '@material-ui/core/TextField';
+
+const styles = theme => ({
+  root: {
+    flexGrow: 1,
+  },
+  button: {
+    margin: theme.spacing.unit,
+  },
+  textField: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
+    width: 300,
+  },
+});
 
 class Amigo extends Component {
   handleClick(){
@@ -9,6 +28,7 @@ class Amigo extends Component {
     this.setState({taskList : [...this.state.taskList, {index: this.state.taskList.length, inputValue}]}, () => {
       console.log(this.state);
       index +=1 ;
+      
     });
   }
   changeValue(event){
@@ -27,9 +47,32 @@ class Amigo extends Component {
     });
     return (
       <div>
-        <input type='text' ref='textfield' required placeholder='Enter your tasks' onChange={this.changeValue} />
-        <button onClick={this.handleClick}>Add</button>
-          {tasks}
+        <Grid container spacing={8}>
+          <Grid item xs={12} align="center">
+            <Typography component="h2" variant="h3" gutterBottom>
+              TODO App - React
+            </Typography>
+          </Grid>
+          <Grid item xs={12} align="center">
+            <TextField
+              id="standard-textarea"
+              label="Enter your tasks"
+              placeholder="Placeholder"
+              multiline
+              required
+              margin="normal"
+              onChange={this.changeValue}
+            />
+            <Button variant="fab" mini color="secondary" aria-label="Add" onClick={this.handleClick}>
+              +
+            </Button>
+          </Grid>
+        </Grid>
+        <Grid container spacing={8}>
+          <Grid item xs={8}>
+            {tasks}
+          </Grid>
+        </Grid>                  
       </div>
     );
   }
